@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Total Income</title>
+<link rel="stylesheet" type="text/css" href="mycss.css">
+</head>
+  <body style="background-color:#F2C45A;" class="ex1">
+  <ul>
+        <li style="float:right"><span style="font-size:35px;cursor:pointer;color:white;" onclick="openNav()">&nbsp;&#9776;&nbsp;</span></li>
+        <li style="float:right"><a href="allincome.html"><font size="4" face="Verdana" color="white">All Time</font></a></li>
+        <li style="float:right"><a href="yearincome.html"><font size="4" face="Verdana" color="white">Current Year</font></a></li>
+        <li style="float:right"><a href="monthincome.html"><font size="4" face="Verdana" color="white">Current Month</font></a></li>
+        <li style="float:right;background:#898989"><a href="income.html"><font size="4" face="Verdana" color="white">Today</font></a></li>
+  <li><font size="6" face="Verdana"color="white"><i>Total Income</i></font></li>
+  </ul>
+    <div id="mySidenav" class="sidenav">
+     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+     <a href="home.html"style="color:white;font-family:Verdana">Home</a>
+     <a href="income.html"style="color:white;font-family:Verdana">Total Income</a>
+     <a href="expense.html"style="color:white;font-family:Verdana">Total Expense</a>
+     <a href="balance.html"style="color:white;font-family:Verdana">Balance</a>
+     <a href="diagrams.html"style="color:white;font-family:Verdana">Diagrams</a>
+	 <a href="addincome.html"style="color:white;font-family:Verdana">Add Income</a>
+     <a href="addexpense.html"style="color:white;font-family:Verdana">Add Expense</a>
+	 <br>
+	   <br>
+	   <a href="index.html"style="color:white;font-family:Verdana">Log Out</a>
+    </div>
+      <br>
+      <br>
+		<h2 align="center"><font face="Verdana">For Today</font></h2>	
+	    <p style="margin-left:100px;font-family:Verdana;font-size: 19px; font-style: italic;font-weight: bold;color:green" id="income1"><p> 
+      <br>
+      <br>
+	 <div style="text-align:center"> 
+        <a href="index.html" class="previous round">&#8249;</a>
+        <a href="expense.html" class="next round">&#8250;</a>
+     </div>
+       <br>
+<script type="text/javascript" language="javascript" >
+getincome();
+function getincome()
+{
+    URL = "http://localhost:8989/Wallet/getincome1";  //Your URL
+    		
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+    xmlhttp.open("GET", URL, false);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.setRequestHeader('Authorization', 'Basic ' + window.btoa('apiusername:apiuserpassword')); //in prod, you should encrypt user name and password and provide encrypted keys here instead 
+    xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+    xmlhttp.send(null);
+    var jsonObj= JSON.parse(xmlhttp.responseText);
+    document.getElementById("income1").innerHTML = "Income:    "+ jsonObj.income+".00";	
+}
+function callbackFunction(xmlhttp) 
+{
+    //alert(xmlhttp.responseXML);
+}
+function openNav() {
+    document.getElementById("mySidenav").style.width = "340.16px";
+    document.getElementById("main").style.marginLeft = "340.16px";
+}
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+</body>
+</html>

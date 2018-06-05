@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple Wallet</title>
+<link rel="stylesheet" type="text/css" href="mycss.css">
+</head>
+<body style="background-color:#F2C45A;" class="ex1"  id='bod'>	
+  <ul>    
+        <li><font size="6" face="Verdana" color="white"><i>Create Account</i></font></li>			
+  </ul>
+     
+     </div>
+         <br>
+         <br>
+		     <center>
+		 <table border="6" width="50%" cellpadding="5" class="table-fill"> 
+                    <thead>
+                        <tr>
+                            <th colspan="2"><font face="Verdana" size="4">Enter Information Here</font></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><font face="Verdana" size="3.5"><i>Username:</i></font></td>
+                            <td><input type="text" name="username" value="" id="username" /></td>
+                        </tr>             
+                        <tr>
+                            <td><font face="Verdana" size="3.5"><i>Password:</i></font></td>
+                            <td><input type="password" name="password" value="" id="password" /></td>
+                        </tr>
+                        <tr align="center">
+						    <td><button onclick="window.location.reload();"style="width:100%"><b>Restart</b></button></td>
+                            <td><button onclick="myFunction();users();"   style="width:100%"><b>Submit</b></button></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><i><b>Already registered!!</b></i> <a href="index.html" style="color:blue"><b>Login Here</b></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+				    </center>
+        <br>	
+<script type="text/javascript" language="javascript">
+users();
+function users()
+{
+    var input = document.getElementById("username").value;
+	var input2 = document.getElementById("password").value;
+    var urlvariable;
+    urlvariable = "text";
+    var JsonNo='{"username": "'+input+'","password":"'+input2+'"}';
+  
+    URL = "http://localhost:8989/Wallet/postusers";  //Your URL
+    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+    xmlhttp.open("POST", URL, false);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.setRequestHeader('Authorization', 'Basic ' + window.btoa('apiusername:apiuserpassword')); //in prod, you should encrypt user name and password and provide encrypted keys here instead 
+    xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+    xmlhttp.send(JsonNo);
+    var jsonObj= JSON.parse(xmlhttp.responseText);
+    document.getElementById("someInput").innerHTML = "Income:    "+ jsonObj.income+".00";	 
+}
+function callbackFunction(xmlhttp) 
+{
+    //alert(xmlhttp.responseXML);
+}
+function myFunction() {
+    confirm("The account is created, go to LogIn page!");
+}
+</script>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "index.html";
+    };
+</script>
+</body>
+</html>

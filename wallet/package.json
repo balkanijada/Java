@@ -1,0 +1,23 @@
+{
+  "name": "wallet",
+  "version": "1.0.0",
+  "description": "Wallet App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Damir",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "1.7.9",
+    "electron-rebuild": "^1.6.0"
+  }
+}
